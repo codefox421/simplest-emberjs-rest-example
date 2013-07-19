@@ -7,7 +7,7 @@ App.Router.map(function() {
 
 App.IndexRoute = Ember.Route.extend({
     redirect: function() {
-        this.transitionTo("users");
+        this.transitionTo("messages");
     }
 });
 
@@ -25,7 +25,26 @@ App.UsersRoute = Ember.Route.extend({
 });
 
 // AUTO-GENERATED
-// App.MessagesController = Ember.ArrayController.extend({});
+App.MessagesController = Ember.ArrayController.extend({
+    toggle: function(message) {
+        var transaction = this.get('store').transaction();
+        transaction.add(message);
+
+        var user;
+        App.User.find().filter(function(record) {
+            if ( record.get('id') !== message.get('user.id') ) { user = record; }
+        })
+        transaction = this.get('store').transaction();
+        transaction.add(user);
+        message.set('user', user);
+    }
+});
+
+App.Adapter = DS.RESTAdapter.extend();
+
+// App.Adapter.map('App.Message', {
+//     user: {embedded: 'always'}
+// });
 
 App.Store = DS.Store.extend({
     revision: 11

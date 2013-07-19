@@ -25,7 +25,7 @@
     <ul>
         {{#each message in controller}}
         {{ log message }}
-        <li>@{{ message.user.screen_name }}: {{ message.text }}</li>
+        <li>@{{ message.user.screen_name }}: {{ message.text }} <button {{action toggle message}}>swap</button></li>
         {{/each}}
     </ul>
   </script>

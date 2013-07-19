@@ -2,8 +2,11 @@
     "users": [
         {
             "id": 1,
-            "screen_name": "steveWINton",
-            "messages": [1, 2, 3]
+            "screen_name": "steveWINton"
+        },
+        {
+        	"id": 2,
+        	"screen_name": "the_doctor"
         }
     ]
 }
